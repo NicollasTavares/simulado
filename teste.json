@@ -9,3 +9,86 @@ npm i mysql2
 npm i cors   
 
 npm i body-parser
+
+
+1 - DIAGRAMA DE CLASSES
+------------------------------------------------
+2 - DIAGRAMA DE RELACIONAMENTO
+-----------------------------------------------
+3 - SQL
+
+{ 
+
+
+
+#BANCO DE DADOS PARA CRIAR O BANCO DE DADOS
+
+#CRIAR O BANCO DE DADOS
+CREATE DATABASE SIMULADO_SAEP;
+
+#COMANDO PARA UTILIZAR O BANCO DE DADOS
+USE SIMULADO_SAEP
+
+#COMANDO PARA CRIAR A TABELA USUARIO NO BANCO DE DADOS
+CREATE TABLE usuario(
+id_usuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(100) NOT NULL,
+email VARCHAR(80) NOT NULL
+);
+
+#COMANDO PARA CRIAR A TABELA TAREFA NO BANCO DE DADOS
+CREATE TABLE tarefa(
+id_tarefa INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id_usuario INT NOT NULL,
+descricao VARCHAR(100) NOT NULL,
+equipe VARCHAR(45) NOT NULL,
+prioridade ENUM('Baixa','Média','Alta'),
+data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
+status ENUM('Finalizado','Em Desenvolvimento','Não Iniciado'),
+FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+);
+
+
+
+}
+-------------------------------------------------------------------
+
+estrutura de pastas:
+
+back{
+
+pasta SRC{
+config
+controllers
+models
+routes
+}
+
+front{
+css
+html
+javascript
+}
+
+iniciar o projeto
+
+npm init
+npm i express
+npm i mysql2
+npm i cors
+npm i body-parser
+
+dentro do pack json adicionar -   "type":"module",
+
+
+jquery:
+
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+
+adicionar em cima do title
+
+adicionar abaixo do jquery:
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+somente essas bibliotecas externas
