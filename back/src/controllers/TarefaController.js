@@ -27,6 +27,33 @@ export const TarefaController = {
         } catch (error) {
             res.json({ message: error })
         }
+    },
+
+    listarTarefas: async (req, res) => {
+        try {
+            console.log("oiytfytfdyfdyrd");
+            const tarefas = await Tarefa.listarTarefas()
+            console.log("yyyyyyyy",tarefas);
+            
+            res.json({ tarefas });
+        } catch (error) {
+            res.json({ message: error })
+        }
+    },
+
+    atualizarStatus: async (req, res) => {
+        try {
+            const {id} = req.params;
+            const { status } = req.body;
+            console.log("oiytfytfdyfdyrd");
+            const tarefas = await Tarefa.atualizarStatus(id, status)
+            console.log("yyyyyyyy",tarefas);
+            
+            res.json({ tarefas });
+        } catch (error) {
+            res.json({ message: error })
+        }
     }
+    
     
 } 

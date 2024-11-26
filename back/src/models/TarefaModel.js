@@ -35,6 +35,24 @@ class Tarefa {
             throw error;
         }
     }
+
+    static async listarTarefas() {
+        try {
+            const conn = await connection();
+            const [rows] = await conn.query(`SELECT T.id_tarefa, T.id_usuario, T.descricao,
+                 T.equipe, T.prioridade, T.data_cadastro, T.status
+                 FROM TAREFA t
+                 INNER JOIN USUARIO U
+                 ON T.id_usuario =U.id_usuario;`);
+            console.log(rows);
+
+            return rows;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
+
+
 
 export default Tarefa;
