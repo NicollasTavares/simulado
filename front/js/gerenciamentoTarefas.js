@@ -37,16 +37,28 @@ $(document).ready(async function () {
                     <p>Prioridade: ${tarefa.prioridade}</p>
                     <p>Vinculado a: ${tarefa.nome}</p>
                     <div class="card-actions">
-                        <button class="btn-edit" onclick="carregarPagina('novaTarefa')" href="#"
-                            data-id="${tarefa.id_tarefa}">Editar</button>
-                        <button class="btn-delete" data-id="${tarefa.id_tarefa}">Delete</button>
-                        <button class="btn-delete"></button>
+
+                        <button 
+                        class="btn-edit" 
+                        onclick="carregarPagina('novaTarefa')" 
+                        href="#"
+                        data-id="${tarefa.id_tarefa}">
+                        Editar
+                        </button>
+
+                        <button 
+                        class="btn-delete" 
+                        onclick="carregarPagina('novaTarefa')"
+                        href="#"
+                        data-id="${tarefa.id_tarefa}">
+                        Delete
+                        </button>
+
                     </div>
                     <div class="card-status">
                         <select class="status-dropdown" data-id="${tarefa.id_tarefa}">
                             <option value="Não Iniciado" ${mappedStatus==="Não Iniciado" ? "selected" :""}>Não Iniciado</option>
-                            <option value="Em Desenvolvimento" ${mappedStatus==="Em Desenvolvimento" ? "selected" :""}>Em Desenvolvimento
-                            </option>
+                            <option value="Em Desenvolvimento" ${mappedStatus==="Em Desenvolvimento" ? "selected" :""}>Em Desenvolvimento</option>
                             <option value="Finalizado" ${mappedStatus==="Finalizado" ? "selected" :""}>Finalizado</option>
                         </select>
                         <button class="btn-save-status" data-id="${tarefa.id_tarefa}">Salvar</button>
@@ -65,18 +77,19 @@ $(document).ready(async function () {
 
     await buscarTarefas();
 
-    $(document).off('submit', '#btn-save-status');
-    $(document).on('submit', '#btn-save-status', async function (event) {
-        const taskId = $(this).data(id);
-        const newStatus = $(`.status-dropdown[data-id'${taskId}']`).val();
+    $(document).off('click', '.btn-save-status');
+    $(document).on('click', '.btn-save-status', async function () {
+        const taskId = $(this).data('id');
+        const newStatus = $(`.status-dropdown[data-id='${taskId}']`).val();
 
         try{
             await axios.put(`${localStorage.getItem('ipApi')}atualizarStatus/${taskId}`, {status:newStatus});
+            await buscarTarefas();
         } catch (error) {
 
         }
 
-    }
+    })
 
 
 })

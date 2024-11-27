@@ -51,6 +51,20 @@ class Tarefa {
             throw error;
         }
     }
+
+    static async atualizarStatus(id, status) {
+        try {
+            const conn = await connection();
+            const pSql = `UPDATE TAREFA SET status=? WHERE id_tarefa=?`;
+            const pValues = [status, id];
+            const [result] = await conn.query(pSql, pValues)
+
+            console.log(rows);
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 

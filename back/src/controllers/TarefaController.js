@@ -43,15 +43,25 @@ export const TarefaController = {
 
     atualizarStatus: async (req, res) => {
         try {
-            const {id} = req.params;
-            const { status } = req.body;
-            console.log("oiytfytfdyfdyrd");
-            const tarefas = await Tarefa.atualizarStatus(id, status)
-            console.log("yyyyyyyy",tarefas);
-            
-            res.json({ tarefas });
+          const {id} = req.params;
+          const {status} = req.body;
+          const newStatus = status.toUpperCase();
+          const tarefas = await Tarefa.atualizarStatus(id, newStatus);
+          res.json({ tarefas });
         } catch (error) {
-            res.json({ message: error })
+          res.json({ message: error });
+        }
+    },
+
+    deleteTarefa: async (req, res) => {
+        try {
+          const {id} = req.params;
+          const {status} = req.body;
+          const newStatus = status.toUpperCase();
+          const tarefas = await Tarefa.atualizarStatus(id, newStatus);
+          res.json({ tarefas });
+        } catch (error) {
+          res.json({ message: error });
         }
     }
     
